@@ -1,4 +1,5 @@
 from unittest import TestCase
+
 from manager import Manager
 from order import Order
 
@@ -32,4 +33,3 @@ class Test(TestCase):
         manager.orders = {order: 2}
         manager.delete_order(order)
         self.assertEqual(manager.orders[order], 1)
-
