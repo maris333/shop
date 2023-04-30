@@ -12,8 +12,6 @@ class Manager:
         else:
             self.orders[order] = 1
 
-        print(self.orders)
-
     def delete_order(self, order: Order):
         if order in self.orders:
             if self.orders[order] == 1:
@@ -22,4 +20,3 @@ class Manager:
                 self.orders[order] -= 1
         else:
             print("This order has been deleted")
-        print(self.orders)
