@@ -8,10 +8,11 @@ class Manager:
         self.orders_in_stock = orders_in_stock
         self.orders: Dict[Order, int] = {}
 
-    def get_order_in_stock_by_id(self, id: int) -> Order:
+    def get_order_in_stock_by_id(self, id: int) -> any:
         for order_in_stock in self.orders_in_stock.keys():
             if order_in_stock.id == id:
                 return order_in_stock
+        return None
 
     def check_if_order_is_in_stock(self, order: Order, amount: int) -> bool:
         if self.get_order_in_stock_by_id(order.id) is not None:
@@ -23,7 +24,9 @@ class Manager:
         print(f"{order.name.title()} are not in stock")
         return False
 
-    def __is_order_in_orders(self, order: Order, amount: int, order_in_stock: Order) -> bool:
+    def __is_order_in_orders(
+        self, order: Order, amount: int, order_in_stock: Order
+    ) -> bool:
         if order in self.orders:
             self.orders[order] += amount
             self.orders_in_stock[order_in_stock] -= amount
@@ -35,13 +38,16 @@ class Manager:
             print(f"{amount} of {order.name} was added")
             return True
 
-    def add_order(self, order: Order, amount: int)-> bool:
+    def add_order(self, order: Order, amount: int) -> bool:
         if self.check_if_order_is_in_stock(order, amount):
             order_in_stock = self.get_order_in_stock_by_id(order.id)
             self.__is_order_in_orders(order, amount, order_in_stock)
+            return True
         return False
 
-    def __is_order_larger_or_equal__amount(self, order: Order, amount: int, order_in_stock: Order) -> bool:
+    def __is_order_larger_or_equal__amount(
+        self, order: Order, amount: int, order_in_stock: Order
+    ) -> bool:
         if self.orders[order] == amount:
             self.orders.pop(order)
             self.orders_in_stock[order_in_stock] += amount
