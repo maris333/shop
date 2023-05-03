@@ -12,9 +12,9 @@ class Order:
 
     def __eq__(self, other):
         if isinstance(other, Order):
-            return(self.id, self.name, self.price) == (
+            return (self.id, self.name, self.price) == (
                 other.id,
                 other.name,
-                other.price
+                other.price,
             )
         return False
