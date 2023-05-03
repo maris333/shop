@@ -5,8 +5,32 @@ from .order import Order
 
 class Manager:
     def __init__(self, orders_in_stock: Dict[Order, int]):
-        self.orders_in_stock = orders_in_stock
-        self.orders: Dict[Order, int] = {}
+        self._orders_in_stock = orders_in_stock
+        self._orders: Dict[Order, int] = {}
+
+    @property
+    def orders_in_stock(self):
+        return self.orders_in_stock
+
+    @orders_in_stock.setter
+    def orders_in_stock(self, value):
+        self._orders_in_stock = value
+
+    @orders_in_stock.getter
+    def orders_in_stock(self):
+        return self._orders_in_stock
+
+    @property
+    def orders(self):
+        return self.orders
+
+    @orders.setter
+    def orders(self, value):
+        self._orders = value
+
+    @orders.getter
+    def orders(self):
+        return self._orders
 
     def get_order_in_stock_by_id(self, id: int):
         for order_in_stock in self.orders_in_stock.keys():
