@@ -8,7 +8,7 @@ class Manager:
         self.orders_in_stock = orders_in_stock
         self.orders: Dict[Order, int] = {}
 
-    def get_order_in_stock_by_id(self, id: int) -> any:
+    def get_order_in_stock_by_id(self, id: int):
         for order_in_stock in self.orders_in_stock.keys():
             if order_in_stock.id == id:
                 return order_in_stock
@@ -58,6 +58,7 @@ class Manager:
             self.orders_in_stock[order_in_stock] += amount
             print(f"{amount} of {order.name} were deleted")
             return True
+        return False
 
     def delete_order(self, order: Order, amount: int) -> bool:
         if order in self.orders:
